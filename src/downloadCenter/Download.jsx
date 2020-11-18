@@ -1,7 +1,7 @@
 import React from "react"
 
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../downloadCenter/downloadCenterCss/index.css';
 import {Layout, Menu, Breadcrumb, Row, Col} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';

@@ -1,6 +1,6 @@
 import React from "react"
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../downloadCenter/downloadCenterCss/index.css';
 
 import { Button, Row, Col } from 'antd';
 
@@ -8,7 +8,7 @@ function handleClick(value){
     console.log(value);
 }
 
-export default class ShuJvLeiXing extends React.Component {
+export default class DownloadBlock extends React.Component {
 
     render(){
         return(

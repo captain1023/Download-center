@@ -1,6 +1,5 @@
 import React from "react"
 import 'antd/dist/antd.css';
-import '../index.css';
 import { Button } from 'antd';
 import { Row, Col} from 'antd';
 

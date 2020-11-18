@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./pages/Home";
-import Mine from "./pages/Mine";
-import Download from "./pages/Download";
-import Setting from "./pages/Setting";
+import Home from "./downloadCenter/Home";
+import Mine from "./downloadCenter/Mine";
+import Download from "./downloadCenter/Download";
+import Setting from "./downloadCenter/Setting";
 import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {

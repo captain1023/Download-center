@@ -1,13 +1,12 @@
 import React from "react"
 
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../downloadCenter/downloadCenterCss/index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { Button } from 'antd';
-import ShuJvLeiXing from "./ShuJvLeiXing";
-import Sidebar from "./Sidebar";
+import DownloadBlock from "./DownloadBlock"
+import Sidebar from "../component/Sidebar";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -138,7 +137,7 @@ export default class Home extends React.Component{
               <h3>选择数据类型</h3>
                <Divider />
               <div>
-                <ShuJvLeiXing buttonInfo = {buttonInfo}></ShuJvLeiXing>
+                <DownloadBlock buttonInfo = {buttonInfo}></DownloadBlock>
               </div>
             </Content>
             <Content

@@ -3,7 +3,6 @@ import { Layout, Menu, Breadcrumb,Button} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import Tables from "./Tables";
 import { Form, Input, DatePicker, TimePicker, Select, Cascader, InputNumber } from 'antd';
-import { useForm } from "antd/lib/form/Form";
 import { Row, Col, Divider } from 'antd';
 
 import SettingForm from "./SettingForm"

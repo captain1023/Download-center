@@ -1,6 +1,6 @@
 import React from "react";
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../downloadCenter/downloadCenterCss/index.css';
 import { Select, Row, Col } from 'antd';
 import moment from "moment";
 import { DatePicker } from "antd";

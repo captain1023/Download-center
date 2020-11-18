@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../downloadCenter/downloadCenterCss/index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Row, Col, Divider } from 'antd';
