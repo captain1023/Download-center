@@ -18,7 +18,7 @@ export default class ButtonGenerator extends React.Component {
                 <Row>
                     {
                         this.props.buttonInfo.map((element,index) =>{
-                            return <Col span={3}><Button block="true" value={element.value} key={index} type={element.isAble ? "primary":""} onClick={()=>{element.isAble=!element.isAble; this.forceUpdate()}}>{element.title}</Button></Col>
+                            return <Col key={index} span={3}><Button block="true" value={element.value} key={index} type={element.isAble ? "primary":""} onClick={()=>{element.isAble=!element.isAble; this.forceUpdate()}}>{element.title}</Button></Col>
                         })
                     }
                 </Row>

@@ -1,15 +1,103 @@
 import React from "react"
 
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import '../index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { Button } from 'antd';
+import ShuJvLeiXing from "./ShuJvLeiXing";
+import Sidebar from "./Sidebar";
 
-  const { SubMenu } = Menu;
-  const { Header, Content, Sider } = Layout;
+const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
+
+
+const buttonInfo=[
+  {
+    title:"日期",
+    value:"0",
+    isAble:true,
+    describe:"选中的日期"
+  },
+  {
+    title:"日期",
+    value:"1",
+    isAble:true,
+    describe:"选中的日期"
+  },
+  {
+    title:"日期",
+    value:"2",
+    isAble:true,
+    describe:"选中的日期"
+  },
+  {
+    title:"日期",
+    value:"3",
+    isAble:true,
+    describe:"选中的日期"
+  },
+];
+
+let data=[
+  {
+    id:2,
+    parent_id:11,
+    page_name:'首页'
+  },
+  {
+    id:3,
+    parent_id:11,
+    page_name:'运营看板'
+  },
+  {
+    id:4,
+    parent_id:11,
+    page_name:'行业中心'
+  },
+  {
+    id:5,
+    parent_id:4,
+    page_name:'家电3C'
+  },  {
+    id:6,
+    parent_id:4,
+    page_name:'服饰运动'
+  },
+  {
+    id:7,
+    parent_id:11,
+    page_name:'下载任务'
+  },
+  {
+    id:8,
+    parent_id:7,
+    page_name:'创建任务'
+  },
+  {
+    id:9,
+    parent_id:7,
+    page_name:'我的任务'
+  },
+  {
+    id:10,
+    parent_id:8,
+    page_name:'交易数据'
+  },
+  {
+    id:11,
+    parent_id:-1,
+    page_name:'有品数据中心'
+  },
+  {
+    id:12,
+    parent_id:8,
+    page_name:'交易数据'
+  },
+
+
+]
 
 export default class Home extends React.Component{
 
@@ -22,34 +110,9 @@ export default class Home extends React.Component{
           </Menu>
         </Header>
         <Layout>
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-            >
-              <Menu.Item key="0">首页</Menu.Item>
-              <SubMenu key="sub1" icon={<UserOutlined />} title="运营看板">
-                <Menu.Item key="2">查询表格</Menu.Item>
-                <Menu.Item key="3">标准列表</Menu.Item>
-                <Menu.Item key="4">卡片列表</Menu.Item>
-                <SubMenu key="搜索列表" title="搜索列表">
-                  <Menu.Item key="41">搜索列表(文章)</Menu.Item>
-                  <Menu.Item key="42">搜索列表(项目)</Menu.Item>
-                  <Menu.Item key="43">搜索列表(应用)</Menu.Item>
-                </SubMenu>
-              </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="行业中心">
-                <Menu.Item key="5">基础详情页</Menu.Item>
-                <Menu.Item key="6">高级详情页</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="下载任务">
-                <Menu.Item key="7">创建任务</Menu.Item>
-                <Menu.Item key="8">我的任务</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </Sider>
+          <Menu>
+            <Sidebar data ={data}></Sidebar>
+          </Menu>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Content
               className="site-layout-background"
@@ -74,17 +137,8 @@ export default class Home extends React.Component{
             >
               <h3>选择数据类型</h3>
                <Divider />
-              <div className="middle">
-                <Button className="bigbutton">
-                  <h2>流量数据</h2>
-                  <p>平台,页面,楼层,坑位的预览,曝光,点击等数据</p>
-                  <p>数据更新时间:</p>
-                </Button >
-                <Button className="bigbutton">          
-                  <h2>交易数据</h2>
-                  <p>事业部,类目,商品维度的下单,支付等数据</p>
-                  <p>数据更新时间:</p>
-                </Button>
+              <div>
+                <ShuJvLeiXing buttonInfo = {buttonInfo}></ShuJvLeiXing>
               </div>
             </Content>
             <Content

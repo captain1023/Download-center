@@ -1,6 +1,5 @@
 import React from "react"
 
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import '../index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
@@ -16,8 +15,7 @@ import ButtonGenerator from "./ButtonGenerator"
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-const { RangePicker } = DatePicker;
-  
+
 function range(start, end) {
   const result = [];
   for (let i = start; i < end; i++) {
@@ -42,7 +40,7 @@ const buttonInfo=[
     title:"日期",
     value:"date",
     isAble:true,
-    describe:"选中的日期"
+    describe:"选中的日期",
   },
   {
     title:"事业部",
@@ -84,15 +82,55 @@ const columns = [
 ];
 
 let options = [
-  "全部事业部",
-  "服饰运动行业运营中心",
-  "家电3C行业运营中心",
-  "海购行业运营中心",
-  "个户健康行业运营中心",
-  "居家生活行业运营中心",
-  "日用文创行业运营中心",
-  "小米自营行业运营中心"
-];
+  {
+    name:"事业部",
+    code_type:0,
+    values:[
+        "全部事业部",
+      "服饰运动行业运营中心",
+      "家电3C行业运营中心",
+      "海购行业运营中心",
+      "个户健康行业运营中心",
+      "小米自营行业运营中心"
+    ]
+  },
+  {
+    name:"一级业务分类",
+    code_type:0,
+    values:[1,2,3,4,5,6,7,8]
+  },
+  {
+    name:"二级业务分类",
+    code_type:1,
+    values:[1,2,3,4,5,6,7,8]
+  },
+  {
+    name:"品牌",
+    code_type:2,
+    values:[1,2,3,4,5,6,7,8]
+  },
+  {
+    name:"厂商",
+    code_type:3,
+    values:[1,2,3,4,5,6,7,8]
+  },
+  {
+    name:"数据统计周期",
+    code_type:4,
+    values:[1,2,3,4,5,6]
+  },
+  {
+    name:"数据统计周期",
+    code_type:4,
+    values:[1,2,3,4,5,6]
+  },
+  {
+    name:"数据统计周期",
+    code_type:4,
+    values:[1,2,3,4,5,6]
+  },
+]
+
 
 export default class Mine extends React.Component{
 
@@ -157,22 +195,9 @@ export default class Mine extends React.Component{
             >
               <h3>数据筛选</h3>
               <Divider />
-              <Row gutter={[0,18]}>
-                <Col span={2}>事业部</Col>
-                <Col span={4}><Selectcolumns options={options}/></Col>
-                <Col span={2} offset={1}>一级业务分类</Col>
-                <Col span={4}><Selectcolumns options={options}/></Col>
-                <Col span={2} offset={1}>二级业务分类</Col>
-                <Col span={4}><Selectcolumns options={options}/></Col>
-              </Row>
-              <Row gutter={[0,18]}>
-                <Col span={2}>品牌</Col>
-                <Col span={4}><Selectcolumns options={options}/></Col>
-                <Col span={2} offset={1}>厂商</Col>
-                <Col span={4}><Selectcolumns options={options}/></Col>
-                <Col span={2} offset={1}>数据统计周期</Col>
-                <Col span={5}><RangePicker disabledDate={disabledDate} /></Col>
-              </Row>
+
+              <Selectcolumns options={options}/>
+
             </Content>
             
             <Content className="site-layout-background" style={{
@@ -248,7 +273,7 @@ export default class Mine extends React.Component{
               }}
             >
               <div>
-                <Row gutter={0,11}>
+                <Row gutter={[0,11]}>
                   <Col span={3} offset={8}><Button size="large" block="true" href="http://localhost:3000/Home">返回</Button></Col>
                   <Col span={3}><Button size="large" type="primary" block="true" href="http://localhost:3000/Download">下一步</Button></Col>
                 </Row>
