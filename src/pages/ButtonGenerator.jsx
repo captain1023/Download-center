@@ -12,7 +12,7 @@ export default function ButtonGenerator({buttonInfo,buttonCallBack}){
                 {
 
                     buttonInfo && buttonInfo.map((element,index) =>{
-                        return <Col span={3}><Button block="true" dataIndex={element.dataIndex} key={index} type={element.isAble ? "primary":""} 
+                        return <Col span={3}><Button block="true" dataIndex={element.dataIndex} key={index} type={element.isAble ? "primary":""}
                         onClick={()=>{
                             //传回父类column的值
                                 buttonCallBack(element)

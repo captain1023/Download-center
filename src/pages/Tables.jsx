@@ -21,7 +21,7 @@ export default class Tables extends React.Component {
         })
     }
 
-   
+
 
     render(){
         return(
@@ -31,4 +31,3 @@ export default class Tables extends React.Component {
         )
     }
 }
-
