@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
@@ -31,37 +31,25 @@ function disabledDate(current) {
   return current && current > moment().endOf('day');
 }
 
+let table;
 function handleButtonClick(e){
   columns.push({title:e,dataIndex:e,key:e});
+  table =<Tables columns={columns}/>;
 
   console.log("already clicked");
 }
 
-const buttonInfo=[
-  {
-    title:"日期",
-    value:"date",
-    isAble:true,
-    describe:"选中的日期"
-  },
-  {
-    title:"事业部",
-    value:"shiyebu",
-    isAble:false,
-    describe:""
-  },
-  {
-    title:"bbb",
-    value:"bb",
-    isAble:true,
-    describe:""
-  },
-  {
-    title:"aaa",
-    value:"aaaa",
-    isAble:false,
-    describe:""
-  },
+const target = [
+  {title:"浏览PV",dataIndex:"浏览PV"},
+  {title:"加购PV",dataIndex:"加购PV"},
+  {title:"收藏PV",dataIndex:"收藏PV"},
+  {title:"分享PV",dataIndex:"分享PV"},
+  {title:"搜索曝光PV",dataIndex:"搜索曝光PV"},
+  {title:"下单人数",dataIndex:"下单人数"},
+  {title:"支付人数",dataIndex:"支付人数"},
+  {title:"退款人数",dataIndex:"退款人数"},
+  {title:"支付转化率",dataIndex:"支付转化率"},
+
 ]
 
 
@@ -69,17 +57,14 @@ const columns = [
   {
     title: "Name",
     dataIndex: "name",
-    key: "name",
   },
   {
     title: "ge",
     dataIndex: "age",
-    key: "age"
   },
   {
     title: "Address",
     dataIndex: "address",
-    key: "address"
   }
 ];
 
@@ -94,9 +79,156 @@ let options = [
   "小米自营行业运营中心"
 ];
 
-export default class Mine extends React.Component{
 
-  render(){
+let selecteDeminsion = [
+  {title:"日期",dataIndex:"日期"},
+  {title:"事业部",dataIndex:"事业部"},
+  {title:"bbbb",dataIndex:"bbbb"},
+  {title:"aaaa",dataIndex:"aaaa"},
+]
+
+let productsDeminsion = [
+  {title:"gid(含名称)",dataIndex:"gid",isAble:false,describe:"gid"},
+  {title:"pid(含名称)",dataIndex:"pid",isAble:false,describe:"pid"},
+  {title:"商品类型",dataIndex:"商品类型",isAble:false,describe:"商品类型"},
+  {title:"销售模式",dataIndex:"销售模式",isAble:false,describe:"销售模式"},
+  {title:"上架状态",dataIndex:"上架状态",isAble:false,describe:"上架状态"},
+
+
+]
+
+const button=[
+  {
+    title:"日期",
+    dataIndex:"date",
+    isAble:true,
+    describe:"选中的日期",
+    
+  },
+  {
+    title:"事业部",
+    dataIndex:"shiyebu",
+    isAble:false,
+    describe:"",
+  }
+]    
+
+export default function Mine(){
+  //筛选纬度
+  const [buttonInfo,setButtonInfo] = useState();
+  //商品纬度
+  const [dimension,setDimension] = useState([]);
+  //表格
+  const [columns,setColumns] = useState([]);
+
+
+  useEffect(()=>{
+    //之后API获取按钮数据
+    setButtonInfo(button);
+    setDimension(productsDeminsion);
+  })
+
+  //父组件传递给子组件的回调函数 用来动态更新table数据
+  const onbuttonCallBack = (element) => {
+
+
+    let newElement = {...element};
+      newElement.isAble = !newElement.isAble;
+      const isExist = (ele)=>{
+        return (ele.dataIndex === element.dataIndex);
+      }
+
+      if(newElement.isAble){
+        //如果说isAble的值=== true
+        //那么新的element应该加入column
+        //column中必不存在这个element
+        columns.push(element);
+      }else{
+        //新元素的isAble的值===false
+        //从column中删除这个element
+        let columnIndex =  columns.findIndex(isExist)
+        columns.splice(columnIndex,1);
+      }
+      setColumns(columns.slice())
+
+      //处理button
+
+      let index = buttonInfo.findIndex(isExist)
+      buttonInfo[index].isAble = !buttonInfo[index].isAble
+      setButtonInfo(buttonInfo.slice())
+
+      console.log(buttonInfo);
+      console.log("=========");
+      console.log(columns);
+  }
+
+  const onDimensionCallBack = (element) => {
+
+    let newElement = {...element};
+    newElement.isAble = !newElement.isAble;
+    const isExist = (ele)=>{
+      return (ele.dataIndex === element.dataIndex);
+    }
+
+    if(newElement.isAble){
+      //如果说isAble的值=== true
+      //那么新的element应该加入column
+      //column中必不存在这个element
+      columns.push(element);
+    }else{
+      //新元素的isAble的值===false
+      //从column中删除这个element
+      let columnIndex =  columns.findIndex(isExist)
+      columns.splice(columnIndex,1);
+    }
+
+    setColumns(columns.slice())
+
+    //处理dimension
+    let index = dimension.findIndex(isExist)
+    dimension[index].isAble = !dimension[index].isAble
+    setButtonInfo(dimension.slice())
+    console.log(dimension)
+    console.log("=========");
+    console.log(columns);
+
+}
+
+const onTargetCallBack = (element) => {
+
+  let newElement = {...element};
+  newElement.isAble = !newElement.isAble;
+  const isExist = (ele)=>{
+    return (ele.dataIndex === element.dataIndex);
+  }
+
+  if(newElement.isAble){
+    //如果说isAble的值=== true
+    //那么新的element应该加入column
+    //column中必不存在这个element
+    columns.push(element);
+  }else{
+    //新元素的isAble的值===false
+    //从column中删除这个element
+    let columnIndex =  columns.findIndex(isExist)
+    columns.splice(columnIndex,1);
+  }
+
+  setColumns(columns.slice())
+
+  //处理traget
+  let index = target.findIndex(isExist)
+  target[index].isAble = !target[index].isAble
+  setButtonInfo(target.slice())
+  console.log(target)
+  console.log("=========");
+  console.log(columns);
+
+}
+
+
+
+
     return(
       <Layout>
         <Header className="header">
@@ -180,19 +312,23 @@ export default class Mine extends React.Component{
                 margin:"15px 0 0 0 ",
                 minHeight: 0,
               }}>
+
+
+
               <h3>维度选择</h3>
+
               <Divider />
               <Row gutter={[0,18]}>
                 <Col span={2}><h3>筛选维度</h3></Col>
-                <Col span={22}><ButtonGenerator buttonInfo={buttonInfo}/></Col>
+                <Col span={22}><ButtonGenerator buttonInfo={buttonInfo} buttonCallBack={onbuttonCallBack}/></Col>
               </Row>
+
+
+
               <Row gutter={[0,18]}>
                 <Col span={2}><h3>商品维度</h3></Col>
-                <Col span={3}><Button block="true">gid（含名称）</Button></Col>
-                <Col span={3}><Button block="true">pid（含名称）</Button></Col>
-                <Col span={3}><Button block="true">商品类型</Button></Col>
-                <Col span={3}><Button block="true">销售模式</Button></Col>
-                <Col span={3}><Button block="true">上下架状态</Button></Col>
+                <Col span={22}><ButtonGenerator buttonInfo={dimension} buttonCallBack={onDimensionCallBack}/></Col>
+             
               </Row>
             </Content>
 
@@ -204,25 +340,16 @@ export default class Mine extends React.Component{
                 minHeight: 0,
               }}
             >
+
+
+
               <h3>指标选择</h3>
               <Divider />
               <Row gutter={[0,0]}>
                 <Col span={2}><h3>用户行为</h3></Col>
-                <Col span={2}><Button block="true">浏览PV</Button></Col>
-                <Col span={2}><Button block="true">浏览UV</Button></Col>
-                <Col span={2}><Button block="true">加购PV</Button></Col>
-                <Col span={2}><Button block="true">加购UV</Button></Col>
-                <Col span={2}><Button block="true">收藏PV</Button></Col>
-                <Col span={2}><Button block="true">收藏UV</Button></Col>
-                <Col span={2}><Button block="true">分享PV</Button></Col>
-                <Col span={2}><Button block="true">分享UV</Button></Col>
-                <Col span={2}><Button block="true">搜索曝光PV</Button></Col>
-                <Col span={2}><Button block="true">搜索曝光UV</Button></Col>
-                <Col span={2}></Col>
-                <Col span={2} offset={2}><Button block="true">下单人数</Button></Col>
-                <Col span={2} ><Button block="true" onClick={(event)=>handleButtonClick("支付人数")}>支付人数</Button></Col>
-                <Col span={2} ><Button block="true" onClick={(event)=>handleButtonClick("退款人数")}>退款人数</Button></Col>
-                <Col span={2} ><Button block="true" onClick={(event)=>{handleButtonClick("支付转化率")}}>支付转化率</Button></Col>
+                <Col span={22}><ButtonGenerator buttonInfo={target} buttonCallBack={onTargetCallBack}/></Col>
+
+                
               </Row>
             </Content>
             
@@ -236,7 +363,7 @@ export default class Mine extends React.Component{
             >
               <h3>表头预览</h3>
               <Divider />
-              <Tables columns={columns}/>
+              { <Tables columns={columns}/> }
             </Content>
 
             <Content
@@ -259,7 +386,7 @@ export default class Mine extends React.Component{
       </Layout>
     )
   }
-}
+
 
 
 

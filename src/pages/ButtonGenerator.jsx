@@ -4,25 +4,25 @@ import '../index.css';
 import { Button } from 'antd';
 import { Row, Col} from 'antd';
 
-export default class ButtonGenerator extends React.Component {
+export default function ButtonGenerator({buttonInfo,buttonCallBack}){
 
-    constructor(props){
-        super(props);
-        this.state = {
-            visibleState : null
-        };
-    }
-    render(){
-        return(
-            <div>
-                <Row>
-                    {
-                        this.props.buttonInfo.map((element,index) =>{
-                            return <Col span={3}><Button block="true" value={element.value} key={index} type={element.isAble ? "primary":""} onClick={()=>{element.isAble=!element.isAble; this.forceUpdate()}}>{element.title}</Button></Col>
-                        })
-                    }
-                </Row>
-            </div>
-        )
-    }
+    return(
+        <div>
+            <Row>
+                {
+
+                    buttonInfo && buttonInfo.map((element,index) =>{
+                        return <Col span={3}><Button block="true" dataIndex={element.dataIndex} key={index} type={element.isAble ? "primary":""} 
+                        onClick={()=>{
+                            //传回父类column的值
+                                buttonCallBack(element)
+                            }
+                        }
+
+                        >{element.title}</Button></Col>
+                    })
+                }
+            </Row>
+        </div>
+    )
 }

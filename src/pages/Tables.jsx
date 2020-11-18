@@ -14,16 +14,14 @@ export default class Tables extends React.Component {
     }
 
     componentDidMount() {
-        const column = [];
-
+        let column = [];
+        column = [...this.props.columns];
         this.setState({
             column : column
         })
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        this.setState(this.props.columns);
-    }
+   
 
     render(){
         return(

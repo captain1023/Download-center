@@ -48,6 +48,10 @@ export default class Home extends React.Component{
                 <Menu.Item key="7">创建任务</Menu.Item>
                 <Menu.Item key="8">我的任务</Menu.Item>
               </SubMenu>
+              
+              <SubMenu key="sub4" icon={<NotificationOutlined />} title="设置">
+                <Menu.Item key="7" href= "http://localhost:3000/setting">添加维度</Menu.Item>   
+              </SubMenu>
             </Menu>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
