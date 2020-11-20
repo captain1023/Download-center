@@ -85,7 +85,7 @@ function App() {
         <Route path="/home" component={Home}></Route>
         <Route path="/mine" component={Mine}></Route>
         <Route path="/download" component={Download}></Route>
-        <Route path="/setting" component={Setting}></Route>
+        <Route path="/setting/1" component={Setting}></Route>
       </Router>
     </div>
   );
