@@ -10,8 +10,10 @@ import { DatePicker } from 'antd';
 import moment from 'moment';
 import Tables from "./Tables";
 import Selectcolumns from "./Selectcolumns";
-import ButtonGenerator from "./ButtonGenerator"
+import ButtonGenerator from "./ButtonGenerator";
 
+//HTTP请求
+import DownloadRequest from "../serverRequest/DownloadRequest";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -161,7 +163,17 @@ export default function Mine(){
 
 
   useEffect(()=>{
+    console.log("AAAA")
     //之后API获取按钮数据
+    async function getDimensionTarget(){
+      try{
+        const data = await DownloadRequest.getDimensionTarget(8)
+        console.log(data);
+      }catch(ex){
+        console.log(ex)
+      }
+    }
+    getDimensionTarget();
     setButtonInfo(button);
     setDimension(productsDeminsion);
   })
