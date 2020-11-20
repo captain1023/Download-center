@@ -13,7 +13,7 @@ export default class DownloadBlock extends React.Component {
     render(){
         return(
             <div>
-                <Row gutter={[15,0]}>
+                <Row gutter={[0,0]}>
                     {
                         this.props.buttonInfo.map((element,index) =>{
                             return <Col span={24/this.props.buttonInfo.length}>
