@@ -121,7 +121,7 @@ export default class Home extends React.Component{
         </Header>
           <Layout>
             <Sidebar array={array}></Sidebar>
-              <Layout>
+              <Layout style={{ padding: '0 24px 24px' }}>
                 <Content
                   className="site-layout-background"
                   style={{

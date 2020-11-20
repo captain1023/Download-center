@@ -11,6 +11,7 @@ import moment from 'moment';
 import Tables from "./Tables";
 import Selectcolumns from "./Selectcolumns";
 import ButtonGenerator from "./ButtonGenerator"
+import Sidebar from "../component/Sidebar";
 
 
 const { SubMenu } = Menu;
@@ -48,7 +49,6 @@ const target = [
   {title:"支付人数",dataIndex:"支付人数"},
   {title:"退款人数",dataIndex:"退款人数"},
   {title:"支付转化率",dataIndex:"支付转化率"},
-
 ]
 
 
@@ -264,8 +264,18 @@ const onTargetCallBack = (element) => {
 
 }
 
-
-
+  let array=[
+    {"name":"有品数据中心","id":11,"pid":-1},
+    {"name":"首页","id":2,"pid":11},
+    {"name":"运营看板","id":3,"pid":11},
+    {"name":"行业中心","id":4,"pid":11},
+    {"name":"家电3C","id":5,"pid":4},
+    {"name":"服饰运动","id":6,"pid":4},
+    {"name":"下载任务","id":7,"pid":11},
+    {"name":"创建任务","id":8,"pid":7},
+    {"name":"我的任务","id":9,"pid":7},
+    {"name":"交易数据","id":10,"pid":8},
+    {"name":"商品数据","id":12,"pid":8}];
 
     return(
       <Layout>
@@ -275,34 +285,7 @@ const onTargetCallBack = (element) => {
           </Menu>
         </Header>
         <Layout>
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-            >
-              <Menu.Item key="0">首页</Menu.Item>
-              <SubMenu key="sub1" icon={<UserOutlined />} title="运营看板">
-                <Menu.Item key="2">查询表格</Menu.Item>
-                <Menu.Item key="3">标准列表</Menu.Item>
-                <Menu.Item key="4">卡片列表</Menu.Item>
-                <SubMenu key="搜索列表" title="搜索列表">
-                  <Menu.Item key="41">搜索列表(文章)</Menu.Item>
-                  <Menu.Item key="42">搜索列表(项目)</Menu.Item>
-                  <Menu.Item key="43">搜索列表(应用)</Menu.Item>
-                </SubMenu>
-              </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="行业中心">
-                <Menu.Item key="5">基础详情页</Menu.Item>
-                <Menu.Item key="6">高级详情页</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="下载任务">
-                <Menu.Item key="7">创建任务</Menu.Item>
-                <Menu.Item key="8">我的任务</Menu.Item>
-              </SubMenu>
-            </Menu>
-          </Sider>
+          <Sidebar array={array}></Sidebar>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Content
               className="site-layout-background"
